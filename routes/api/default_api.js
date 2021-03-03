@@ -5,12 +5,28 @@ var ObjectID = require('mongodb').ObjectID;
 
 module.exports = router;
 
-//midlware for making global session
+//middleware for making global session
 router.use((req, res, next) => {
-    if (typeof (req.session.user_login_info) == "undefined")
-        req.session.user_login_info = {}
     console.log(`-------API--${req.url}-------${JSON.stringify(req.session.user_login_info)}----------${new Date()}----------------------------`)
-    next();
+    console.log(!!req.session.user_login_info)
+    if (typeof(req.session.user_login_info)=="undefined") {
+        req.session.user_login_info = {}
+        res.send({
+            msg: "variable not present on session, prevented on middleware",
+            msg_type: "error"
+        })
+    }
+    else if (!req.session.user_login_info || !req.session.user_login_info.role) {
+        res.send({
+            msg: "User not logged in, prevented on middleware",
+            msg_type: "error"
+        })
+    }
+    else {
+        next();
+    }
+
+
 });
 
 
@@ -23,20 +39,20 @@ router.get("/test_access", async (req, res) => {
                     msg_type: "error"
                 })
             }
-            else if(req.session.user_login_info.role.toLowerCase() == "standard_user"){
+            else if (req.session.user_login_info.role.toLowerCase() == "standard_user") {
                 res.send({
                     msg: "You have  limited access because u r standard_user",
                     msg_type: "error"
                 })
             }
-            else{
+            else {
                 res.send({
                     msg: "You don't have access because u r not either admin or standard_user",
                     msg_type: "error"
                 })
             }
         }
-        else{
+        else {
             res.send({
                 msg: "User not logged in",
                 msg_type: "error"
