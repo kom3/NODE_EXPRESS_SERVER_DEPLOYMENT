@@ -1,5 +1,6 @@
 {
-    "mongoURI": "mongodb://localhost:27017/TEST_DB"
+    "mongoURI": "mongodb://localhost:27017/TEST_DB",
+    "mongoUR2":"mongodb://username:password@10.76.81.116:27017/?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&ssl=false"
 }
 
 
