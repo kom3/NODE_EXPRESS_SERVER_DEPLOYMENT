@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        log_output = (text) => {
+            let node = document.getElementById("output")
+            node.innerHTML = `${node.innerHTML}<br />${text}`
+        }
+
+        login = () => {
+            fetch("/api/users/login", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: "guru"
+                    })
+                })
+                .then(res => res.text())
+                .then(res => log_output(res))
+                .catch(err => {
+                    log_output("you got an error check console")
+                    console.error(err)
+                })
+        }
+
+        logout = () => {
+            fetch("/api/users/logout")
+                .then(res => res.text())
+                .then(res => log_output(res))
+                .catch(err => {
+                    log_output("you got an error check console")
+                    console.error(err)
+                })
+        }
+
+
+        login_status = () => {
+            fetch("/api/users/login_status")
+                .then(res => res.text())
+                .then(res => log_output(res))
+                .catch(err => {
+                    log_output("you got an error check console")
+                    console.error(err)
+                })
+        }
+
+
+        test_access = () => {
+            fetch("/api/test_access")
+                .then(res => res.json())
+                .then(res => log_output(JSON.stringify(res)))
+                .catch(err => {
+                    log_output("you got an error check console")
+                    console.error(err)
+                })
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>A HTML file</h1>
+
+    <button onclick="login();">Login </button>
+    <button onclick="logout();">Logout </button>
+    <button onclick="login_status();">Check login_status </button>
+    <button onclick="test_access();">test_access </button>
+
+    <br />
+    <p id="output"></p>
+
+
+
+</body>
+
+</html>

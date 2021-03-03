@@ -1,0 +1,24 @@
+{
+  "name": "node-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon  server --ignore error.txt",
+    "server2": "node  server"
+  },
+  "author": "gubr",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "config": "^3.3.4",
+    "connect-mongodb-session": "^2.4.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.18",
+    "node-stream-zip": "^1.13.2",
+    "nodemon": "^2.0.7"
+  }
+}
