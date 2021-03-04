@@ -1,15 +1,15 @@
 # NODE_EXPRESS_SERVER_DEPLOYMENT
 
-###Deploying expressJS using pm2(npm module: npm install pm2 -g)
+###Deploying expressJS using pm2(npm module: npm install pm2 -g) <br/>
 `pm2 start server.js`
 
-```Generate Startup Script (to enable as system service)```
+```Generate Startup Script (to enable as system service)``` <br/>
 `pm2 startup`
 
-```Freeze your process list across server restart```
+```Freeze your process list across server restart``` <br/>
 `pm2 save`
 
-```Remove Startup Script (to disable as system service)```
+```Remove Startup Script (to disable as system service)``` <br/>
 `pm2 unstartup`
 
 
